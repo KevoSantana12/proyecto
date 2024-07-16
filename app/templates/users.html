@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    <ul>
+        {% for user in users %}
+            <li> ID: {{ user.id }}, Nombre: {{ user.name }}><a href="{{ url_for('edit_user', user_id=user.id) }}">EDITAR</a></li>
+            <form action="{{ url_for('deleted_user', user_id=user.id) }}" method="post">
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <input type="submit" value="BORRAR">
+            </form>
+        {% endfor %}
+    </ul>
+</body>
+</html>
