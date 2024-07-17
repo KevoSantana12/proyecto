@@ -1,0 +1,28 @@
+{% include './includes/header.html' %}
+<main class="contenedor seccion iniciar">
+
+    <div class="inicio_session">
+
+        <div class="inicio_session_container">
+            <h1>Inicio Session</h1>
+            <form action="/dashboard.html" method="post" class="formulario_inicio">
+                <!-- <label for="email">E-mail</label> -->
+                <input type="email" placeholder="Tu Email" id="email">
+                
+                <!-- <label for="contrasena">E-mail</label> -->
+                <input type="password" placeholder="Tu Contrasena" id="contrasena">
+
+                <input type="submit" value="Inicio" class="boton-verde">
+                <a href="/" class="contrasena_olvidada">¿Olvidaste tu contraseña?</a>
+            </form>
+        </div>
+
+        <div class="otras_opciones">
+            <a href="/registrese" >Crear una cuentra nueva</a>
+        </div>
+
+
+    </div>
+</main>
+
+{% include './includes/footer.html' %}

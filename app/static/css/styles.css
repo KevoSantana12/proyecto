@@ -153,7 +153,6 @@ textarea {
 }
 
 [type=search] {
-    -webkit-appearance: textfield;
     outline-offset: -2px
 }
 
@@ -343,15 +342,15 @@ h4 {
     color: #fff
 }
 
-.dark-mode .formulario label,
-.dark-mode .formulario legend,
-.dark-mode .formulario p {
+.dark-mode .formulario_inicio label,
+.dark-mode .formulario_inicio legend,
+.dark-mode .formulario_inicio p {
     color: #e1e1e1
 }
 
-.dark-mode .formulario input:not([type=submit]),
-.dark-mode .formulario select,
-.dark-mode .formulario textarea {
+.dark-mode .formulario_inicio input:not([type=submit]),
+.dark-mode .formulario_inicio select,
+.dark-mode .formulario_inicio textarea {
     background-color: #333;
     border: 1px solid #333;
     color: #fff
@@ -382,6 +381,10 @@ h4 {
     .header.inicio .contenido-header {
         min-height: 70rem
     }
+
+    .boton-verde-sm {
+        background-color: transparent
+    }
 }
 
 .contenido-header {
@@ -391,13 +394,44 @@ h4 {
 }
 
 .contenido-header h1 {
-    text-align: left;
     color: #fff;
     font-weight: 700;
-    line-height: 2;
-    max-width: 60rem
 }
 
+.contenido-header h2 {
+    color: #fff;
+    font-weight: 500;
+}
+
+.heroe{
+    display: flex;
+    flex-direction: column;
+}
+.heroe h1,
+.heroe h2 {
+    margin: 0;
+    margin-bottom: 80px;
+}
+
+.heroe h1 {
+    margin-bottom: 2px; 
+}
+
+.boton-verde-sm {
+    background-color: #71b100;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 6%;
+    padding: 5px 15px;
+}
+
+.boton-naranja-sm {
+    background-color: #e08709;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 6%;
+    padding: 5px 15px;
+}
 .footer {
     padding: 2.5rem 0;
     background-color: #333;
@@ -434,12 +468,13 @@ h4 {
 .derecha .dark-mode-boton {
     width: 3rem;
     margin-top: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     filter: invert(100%)
 }
 
 .derecha .dark-mode-boton:hover {
-    cursor: pointer
+    cursor: pointer;
+
 }
 
 @media (min-width:768px) {
@@ -499,7 +534,7 @@ h4 {
 }
 
 .navegacion a:hover {
-    color: #71b100
+    color: beige
 }
 
 @media (min-width:768px) {
@@ -588,13 +623,10 @@ h4 {
     font-weight: 900
 }
 
-/* .no-webp .imagen-contacto {
-    background-image: url(../img/encuentra.jpg)
-}
 
-.webp .imagen-contacto {
-    background-image: url(../img/encuentra.webp)
-} */
+.imagen-contacto {
+    background-image: url(../images/encuentra.jpg)
+}
 
 .imagen-contacto {
     background-position: 50%;
@@ -652,6 +684,58 @@ h4 {
     display: block
 }
 
+
+.inicio_session{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.inicio_session_container{
+    height: 500px;
+    width: 500px;
+    margin-top: 50px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+}
+
+.registro{
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 50px;
+}
+
+.registro_container{
+    height: 500px;
+    width: 500px;
+    margin-top: 50px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+}
+
+
+.formulario_inicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.otras_opciones{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0px;
+}
 @media (min-width:768px) {
     .texto-entrada a {
         margin-top: 0
@@ -687,7 +771,7 @@ h4 {
 
 .testimonial blockquote:before {
     content: "";
-    /* background-image: url(../img/comilla.svg); */
+    background-image: url(../images/comilla.svg);
     background-repeat: no-repeat;
     width: 6rem;
     height: 8rem;
@@ -701,7 +785,7 @@ h4 {
     color: #fff
 }
 
-.formulario p {
+.formulario_inicio p {
     font-size: 1.4rem;
     color: #333;
     margin: 2rem 0 0
@@ -712,15 +796,15 @@ h4 {
     color: #333
 }
 
-.formulario label {
+.formulario_inicio label {
     font-weight: 700;
     text-transform: uppercase;
     display: block
 }
 
-.formulario input:not([type=submit]),
-.formulario select,
-.formulario textarea {
+.formulario_inicio input:not([type=submit]),
+.formulario_inicio select,
+.formulario_inicio textarea {
     padding: 1rem;
     display: block;
     width: 100%;
@@ -730,18 +814,18 @@ h4 {
     margin-bottom: 2rem
 }
 
-.formulario textarea {
+.formulario_inicio textarea {
     height: 20rem
 }
 
-.formulario .forma-contacto {
+.formulario_inicio .forma-contacto {
     max-width: 30rem;
     display: flex;
     justify-content: space-between;
     align-items: center
 }
 
-.formulario input[type=radio] {
+.formulario_inicio input[type=radio] {
     margin: 0;
     width: auto
 }

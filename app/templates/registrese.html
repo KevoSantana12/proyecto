@@ -1,0 +1,23 @@
+{% include './includes/header.html' %}
+<main class="contenedor seccion iniciar">
+
+    <div class="registro">
+        <div class="registro_container">
+            <h1>Cree su cuenta con nosotros</h1>
+            <form action="/dashboard.html" method="post" class="formulario_inicio">
+                <!-- <label for="email">E-mail</label> -->
+                <input type="text" placeholder="Tu Primer Nombre" id="nombre" required>
+                <!-- <label for="email">E-mail</label> -->
+                <input type="text" placeholder="Tus Primer Apellidos" id="apellido" required>
+                <!-- <label for="email">E-mail</label> -->
+                <input type="email" placeholder="Tu Email" id="email" required>
+                <!-- <label for="contrasena">E-mail</label> -->
+                <input type="password" placeholder="Tu Contrasena" id="contrasena" required>
+                <input type="password" placeholder="Confirme tu contrasena" id="confirmPassword" name="confirmPassword" required>
+                <input type="submit" value="Cree su cuenta" class="boton-amarillo">
+            </form>
+        </div>
+    </div>
+</main>
+
+{% include './includes/footer.html' %}

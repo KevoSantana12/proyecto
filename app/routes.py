@@ -9,8 +9,25 @@ from datetime import datetime
 inicio = ''
 date = datetime.now().date()
 
+#Paginas a las que los usuarios tiene acceso sin registrarse 
 @app.route('/')
 def home():
     inicio = True
     return render_template('index.html', inicio = inicio, date = date)
+
+
+@app.route('/inicio')
+def inicio():
+    inicio = False
+    return render_template('inicio.html', inicio = inicio, date = date)
+
+@app.route('/registrese')
+def registrese():
+    inicio = False
+    return render_template('registrese.html', inicio = inicio, date = date)
+
+@app.route('/entrada')
+def entrada():
+    inicio = False
+    return render_template('entrada.html', inicio = inicio, date = date)
 

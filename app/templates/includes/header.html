@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienes Raices</title>
+    <title>PlanillaPlus</title>
+    <link rel="icon" type="image/svg+xml" href="../../static/images/logo-negro.svg">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -14,26 +15,30 @@
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="/">
-                    <img src="../../static/images/logo.svg" alt="Logotipo de Bienes Raices">
+                    <img src="../../static//images/logo.svg" alt="">
                 </a>
 
                 <div class="mobile-menu">
-                    <img src="../../static/images/barras" alt="icono menu responsive">
+                    <img src="../../static/images/barras.svg" alt="icono menu responsive">
                 </div>
 
                 <div class="derecha">
                     <img class="dark-mode-boton" src="../../static/images/dark-mode.svg">
                     <nav class="navegacion">
                         <a href="nosotros.php">Nosotros</a>
-                        <a href="anuncios.php">Anuncios</a>
-                        <a href="blog.php">Blog</a>
-                        <a href="contacto.php">Contacto</a>
+                        <a href="anuncios.php">Contactenos</a>
+                        <a href="/registrese" class="boton-verde-sm">Registrese</a>
+                        <a href="/inicio" class="boton-verde-sm">Inicio Session</a>
                     </nav>
                 </div>             
             </div>
 
         {% if inicio %}
-            <h1>Venta de Casas y Departamentos Exclusivos de Lujo</h1>
+            <div class="heroe">
+                <h1>PlanillaPlus</h1>
+                <h2>Calculo de Nomina y Gestor de Planillas</h2>
+            </div>
+
         {% endif %}
         </div>
     </header>
