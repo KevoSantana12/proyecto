@@ -31,3 +31,8 @@ def entrada():
     inicio = False
     return render_template('entrada.html', inicio = inicio, date = date)
 
+@app.route('/mypage')
+def mypage():
+    inicio = False
+    return render_template('mypage.html', inicio = inicio, date = date)
+
