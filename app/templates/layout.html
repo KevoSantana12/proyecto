@@ -10,28 +10,14 @@
                 <!-- Topbar -->
                 {% include './includes/dashboard_templates/top_navbar.html' %}
                 <div class="container-fluid">
-
-
-            </div>
-            {% block content %}{% endblock %}
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Planilla Plus</span>
-                    </div>
+                    {% block content %} {% endblock %}
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
+            </div>
+            {% include './includes/dashboard_templates/footer_dashboard.html' %}
         </div>
-        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
