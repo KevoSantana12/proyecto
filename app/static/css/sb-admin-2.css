@@ -2358,7 +2358,6 @@ fieldset:disabled a.btn {
 .btn-primary {
   color: #fff;
   background-color: #71b100;
-  border-color: #88d600;
 }
 
 .btn-primary:hover {
@@ -3213,7 +3212,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #4e73df;
+  background-color: #858796;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -5288,8 +5287,8 @@ a.badge-dark:focus, a.badge-dark.focus {
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #71b100;
+  border-color: #71b100;
 }
 
 .list-group-item + .list-group-item {
@@ -6497,7 +6496,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-image: url(../images/servicio_3.jpg)
+  background-color: #333;
 }
 
 .bg-transparent {
@@ -7730,6 +7729,8 @@ button.bg-dark:focus {
 .mt-3,
 .my-3 {
   margin-top: 1rem !important;
+  margin-bottom: 15px;
+  margin-right: 15px;
 }
 
 .mr-3,
@@ -9906,9 +9907,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: var(--dark);
-  background-image: linear-gradient(180deg, #333 10%, #333 100%);
-  background-size: cover;
+  background-image: url(../images/servicio_3.jpg);
 }
 
 .bg-gradient-secondary {
@@ -10394,7 +10393,7 @@ a:focus {
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;
   display: block;
-  color: #3a3b45;
+  color: #fff;
   text-decoration: none;
   border-radius: 0.35rem;
   white-space: nowrap;
@@ -10402,7 +10401,7 @@ a:focus {
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover {
-  background-color: #eaecf4;
+  background-color: #222;
 }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:active,
@@ -11289,4 +11288,46 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+
+.ui-w-80 {
+  width : 80px !important;
+  height: auto;
+}
+
+.btn-default {
+  border-color: rgba(24, 28, 33, 0.1);
+  background  : rgba(0, 0, 0, 0);
+  color       : #4E5155;
+}
+
+label.btn {
+  margin-bottom: 0;
+}
+
+.btn-outline-primary {
+  border-color: #26B4FF;
+  background  : transparent;
+  color       : #26B4FF;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.text-light {
+  color: #babbbc !important;
+}
+
+.row-bordered {
+  overflow: hidden;
+}
+
+.account-settings-fileinput {
+  position  : absolute;
+  visibility: hidden;
+  width     : 1px;
+  height    : 1px;
+  opacity   : 0;
 }

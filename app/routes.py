@@ -36,3 +36,9 @@ def mypage():
     inicio = False
     return render_template('mypage.html', inicio = inicio, date = date)
 
+@app.route('/myprofile')
+def myprofile():
+    inicio = False
+    return render_template('myprofile.html', inicio = inicio, date = date)
+
+
