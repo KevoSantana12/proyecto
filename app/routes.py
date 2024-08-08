@@ -41,4 +41,15 @@ def myprofile():
     inicio = False
     return render_template('myprofile.html', inicio = inicio, date = date)
 
+@app.route('/nosotros')
+def nosotros():
+    inicio = False
+    return render_template('nosotros.html', inicio = inicio, date = date)
+
+
+@app.route('/contactenos')
+def contactenos():
+    inicio = False
+    return render_template('contactenos.html', inicio = inicio, date = date)
+
 
