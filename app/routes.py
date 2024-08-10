@@ -9,6 +9,8 @@ from datetime import datetime
 inicio = ''
 date = datetime.now().date()
 
+
+#---------------------------------------------------------------------------
 #Paginas a las que los usuarios tiene acceso sin registrarse 
 @app.route('/')
 def home():
@@ -31,16 +33,6 @@ def entrada():
     inicio = False
     return render_template('entrada.html', inicio = inicio, date = date)
 
-@app.route('/mypage')
-def mypage():
-    inicio = False
-    return render_template('mypage.html', inicio = inicio, date = date)
-
-@app.route('/myprofile')
-def myprofile():
-    inicio = False
-    return render_template('myprofile.html', inicio = inicio, date = date)
-
 @app.route('/nosotros')
 def nosotros():
     inicio = False
@@ -52,4 +44,31 @@ def contactenos():
     inicio = False
     return render_template('contactenos.html', inicio = inicio, date = date)
 
+
+#---------------------------------------------------------------------------
+# Paginas esclusivas de usuarios certificados
+
+@app.route('/mypage')
+def mypage():
+    return render_template('mypage.html')
+
+@app.route('/myprofile')
+def myprofile():
+    return render_template('myprofile.html')
+
+@app.route('/agregarempleados')
+def agregarEmpleados():
+    return render_template('addempleados.html')
+
+@app.route('/empleadocreado')
+def empleadoCreado():
+    return render_template('empleadocreado.html')
+
+@app.route('/empleadofallido')
+def empleadoFallido():
+    return render_template('empleadofallido.html')
+
+@app.route('/empleados')
+def empleados():
+    return render_template('empleados.html')
 

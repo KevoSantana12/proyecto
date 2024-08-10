@@ -821,7 +821,7 @@ h4 {
 .formulario_inicio .forma-contacto {
     max-width: 30rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center
 }
 
@@ -845,3 +845,19 @@ h4 {
     padding-left: 1rem 0 3rem 0
 }
 
+
+.contacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 50px;
+}
+
+.contacto_container{
+    margin-top: 50px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+}

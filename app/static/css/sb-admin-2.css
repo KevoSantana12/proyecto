@@ -9907,7 +9907,8 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-image: url(https://images.pexels.com/photos/7078034/pexels-photo-7078034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                    url(https://images.pexels.com/photos/7078034/pexels-photo-7078034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 }
 
 
@@ -10035,6 +10036,14 @@ a:focus {
 
 .text-gray-900 {
   color: #3a3b45 !important;
+}
+
+.text-green-900 {
+  color: #1cc88a !important;
+}
+
+.text-orange-900 {
+  color: #fd7e14 !important;
 }
 
 .icon-circle {
@@ -10407,7 +10416,7 @@ a:focus {
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:active,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item:active {
-  background-color: #dddfeb;
+  background-color: #5a5c69;
 }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item.active,
@@ -10878,9 +10887,17 @@ a:focus {
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
-  background-position: center;
-  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  top: 100;
+  align-items: center;
+  padding-left: 80px;
+}
+
+.bg-register-image img {
+  height: 50%;
+  width: 80%;
+  border-radius: 15px;
 }
 
 .bg-password-image {
