@@ -1,0 +1,70 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+
+            <div class="row">
+
+                <div class="col">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-green-900 mb-4">Empleados</h1>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Posicion</th>
+                                        <th>Correo</th>
+                                        <th>Salario</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nombre Completo</th>
+                                        <th>Posicion</th>
+                                        <th>Correo</th>
+                                        <th>Salario</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>example@gmail.com</td>
+                                        <td>$320,800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td>example@gmail.com</td>
+                                        <td>$170,750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Junior Technical Author</td>
+                                        <td>example@gmail.com</td>
+                                        <td>$86,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="/agregarempleados">Agregar empleados</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="/mypage">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
