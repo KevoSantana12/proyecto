@@ -15,33 +15,35 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Agrega los datos del empleado</h1>
                         </div>
-                        <form class="user">
+                        <form class="user" action="/agregarempleados" method="post">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                        placeholder="Primer Nombre">
+                                    <input type="text" class="form-control form-control-user" id="exampleFirstName" name="nombre"
+                                        placeholder="Nombre">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName" name="apellido"
                                         placeholder="Apellidos">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
                                     placeholder="Email">
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user"
-                                        id="telefono" placeholder="Numero de telefono">
+                                        id="telefono" name="telefono" placeholder="Numero de telefono">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="salaryInput" placeholder="Salario bruto mensual">
+                                    <input type="number" class="form-control form-control-user" id="salaryInput" name="salario" placeholder="Salario bruto mensual">
                                 </div>
                             </div>
-                            <a href="/empleadofallido" class="btn btn-primary btn-user btn-block">
-                                Crear Empleado
-                            </a>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="posicion" name="posicion"
+                                    placeholder="Posicion laboral actual">
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-user btn-block" value="Agregar empleado"> </input>
                             <hr>
                         </form>
                         <hr>
