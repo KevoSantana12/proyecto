@@ -1,9 +1,11 @@
 from data_access.data_access import userCRUD
+from data_access.data_access import EmpleadoCRUD
 from entities.entities import User
 
 class User_logica:
     def __init__(self):
         self.data_access = userCRUD()
+        self.empleado_data_access = EmpleadoCRUD()
         
     def crear_user(self, user:User):
         self.data_access.insertar_user(user=user)
@@ -21,6 +23,7 @@ class User_logica:
         self.data_access.actualizar_user(user=user)
    
     def deleteUser(self, id):
+        self.empleado_data_access.eliminar_empleados_por_usuario(id)
         self.data_access.eliminar_user(id)
 
     def login(self, email, contrasena) -> User:

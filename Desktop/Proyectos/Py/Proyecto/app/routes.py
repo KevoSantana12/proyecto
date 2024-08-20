@@ -102,42 +102,23 @@ def mypage():
         
     return render_template('mypage.html', userLog=userLog, sumaSalarioEmpleados=sumaSalarioEmpleados, cantidadEmpleados=cantidadEmpleados)
 
-@app.route('/myprofile', methods=['GET', 'POST'])
+@app.route('/myprofile', methods=['POST','GET'])
 def myprofile():
+    user_edit = User()
     user_id = session['id']
     userLog = business_logic_user.get_user(user_id)
     if request.method == 'POST':
-        try:
-            # Obtén los datos del formulario
-            nombre = request.form.get('nombre')
-            apellido = request.form.get('apellido')
-            compania = request.form.get('compania')
-            telefono = request.form.get('telefono')
-            email = request.form.get('email')
-            # contrasena_actual = request.form.get('contrasena_actual')
-            # nueva_contrasena = request.form.get('nueva_contrasena')
-            # repetir_contrasena = request.form.get('repetir_contrasena')
-
-            # Actualiza los atributos del usuario
-            if nombre:
-                userLog.nombre = nombre
-            if apellido:
-                userLog.apellido = apellido
-            if compania:
-                userLog.compania = compania
-            if telefono:
-                userLog.telefono = telefono
-            if email:
-                userLog.email = email
-
-            business_logic_user.update_user(userEditado=userLog, id=user_id)
-
-            return redirect(url_for('myprofile'))
-        except Exception as e:
-            print(f"Error al actualizar el perfil: {e}")
-            return redirect(url_for('error'))
-
-    return render_template('myprofile.html', userLog=userLog)
+            user_edit.nombre = request.form.get('nombre')
+            user_edit.apellido = request.form.get('apellido')
+            user_edit.compania = request.form.get('compania')
+            user_edit.telefono = request.form.get('telefono')
+            user_edit.email = request.form.get('email')
+            business_logic_user.update_user(userEditado=user_edit, id=user_id)
+            userLog = business_logic_user.get_user(user_id)
+            return render_template('cambiosagreados.html', userLog = userLog)
+    else:
+        return render_template('myprofile.html', userLog=userLog)
+    
 
 
 @app.route('/agregarempleados', methods=['GET', 'POST'])
@@ -217,6 +198,14 @@ def eliminar_empleado(id):
     userLog = business_logic_user.get_user(session['id'])
     business_logic_empleado.borrar_empleado(id=id)
     return render_template('empleadoeliminado.html',  userLog = userLog)
+
+@app.route('/eliminar/user/<int:user_id>', methods=['POST'])
+def eliminar_usuario(user_id):
+    if request.method == 'POST':
+        business_logic_user.deleteUser(user_id)
+        return render_template('usuarioeliminado.html')
+    else:
+        return render_template('/mypage')
 
 @app.route('/info/<int:id>', methods=['GET', 'POST'])
 def info_empleado(id):

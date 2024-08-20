@@ -5,7 +5,7 @@ from entities.entities import Empleado
 def obtener_conexion():
     return pymysql.connect(host='localhost',
                                 user='root',
-                                password='Temach2022NM',
+                                password='',
                                 db='db_planilla_plus')
 #Conexio tabla user o empleador
 class userCRUD:
@@ -23,7 +23,6 @@ class userCRUD:
             cursor.execute("DELETE FROM user WHERE id = %s", (id,))
         conexion.commit()
         conexion.close()
-
 
     def obtener_user_por_id(self, id) -> User:
         conexion = obtener_conexion()
@@ -55,10 +54,9 @@ class userCRUD:
         conexion = obtener_conexion()
         with conexion.cursor() as cursor:
             cursor.execute("UPDATE user SET nombre = %s, apellido = %s, correo = %s, telefono = %s, compania = %s WHERE id = %s",
-                        (user.nombre, user.apellido, user.email, user.telefono, user.compania))
+                        (user.nombre, user.apellido, user.email, user.telefono, user.compania, user.id))
         conexion.commit()
         conexion.close()
-
 
     def login(self, email, contrasena) -> User:
         try:
@@ -202,4 +200,9 @@ class EmpleadoCRUD:
         finally:
             conexion.close()
 
-    
+    def eliminar_empleados_por_usuario(self,user_id):
+            connection = obtener_conexion()
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM empleado WHERE user_id = %s", (user_id,))
+            connection.commit()
+            connection.close()
