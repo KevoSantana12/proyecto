@@ -3567,6 +3567,12 @@ input[type="button"].btn-block {
   margin-right: 1rem;
 }
 
+
+#password-help {
+  padding-bottom: 15px;
+}
+
+
 .custom-control-input {
   position: absolute;
   left: 0;

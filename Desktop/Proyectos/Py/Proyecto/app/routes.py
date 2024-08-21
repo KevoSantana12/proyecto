@@ -3,6 +3,7 @@ from datetime import datetime
 from business_logic.user_logica import User_logica
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from business_logic.empleados_logica import Empleado_logica
+from business_logic.cambio_logica import CambioLogica
 from entities.entities import User, Empleado
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -11,6 +12,7 @@ login_manager.login_view = 'login'
 user = User()
 empleado = Empleado()
 userLog = None
+business_logic_cambio = CambioLogica()
 business_logic_user = User_logica()
 business_logic_empleado = Empleado_logica()
 inicio = ''
@@ -60,18 +62,28 @@ def contactenos():
 
 @app.route('/submit', methods = ['POST'])
 def submit_user():
+    confirmContrasena = business_logic_user.confirmar_contrasena(request.form.get('contrasena'),request.form.get('confirmPassword'))
+    contrasenaValida = business_logic_user.verificar_caracteres(request.form.get('contrasena'))
+
     inicio = False
-    user.nombre = request.form.get('nombre')
-    user.apellido = request.form.get('apellido')
-    user.email = request.form.get('email')
-    user.compania = request.form.get('compania')
-    user.telefono = request.form.get('telefono')
-    user.contrasena = request.form.get('confirmPassword')
-    try:
-        business_logic_user.crear_user(user=user)
-        return render_template('usuariocreado.html', inicio = inicio, date = date)
-    except:
-        return render_template('errorusuario.html', inicio = inicio, date = date)
+    if confirmContrasena:
+
+        if contrasenaValida:
+            user.nombre = request.form.get('nombre')
+            user.apellido = request.form.get('apellido')
+            user.email = request.form.get('email')
+            user.compania = request.form.get('compania')
+            user.telefono = request.form.get('telefono')
+            user.contrasena = request.form.get('confirmPassword')
+            try:
+                business_logic_user.crear_user(user=user)
+                return render_template('usuariocreado.html', inicio = inicio, date = date)
+            except:
+                return render_template('errorusuario.html', inicio = inicio, date = date)
+        else:
+            return render_template('registreseContrasenasNoValida.html', inicio = inicio, date = date)
+    else:
+        return render_template('registreseContrasenasNI.html', inicio = inicio, date = date)
     
 @app.route('/login', methods = ['POST','GET'])
 def submit_login():
@@ -87,7 +99,6 @@ def submit_login():
 #---------------------------------------------------------------------------
 # Paginas esclusivas de usuarios logeados
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return business_logic_user.get_user(int(user_id))
@@ -99,8 +110,8 @@ def mypage():
     userLog = business_logic_user.get_user(session['id'])
     sumaSalarioEmpleados = business_logic_empleado.sumaSalarios(session['id'])
     cantidadEmpleados = business_logic_empleado.cantidad_empleados(session['id'])
-        
-    return render_template('mypage.html', userLog=userLog, sumaSalarioEmpleados=sumaSalarioEmpleados, cantidadEmpleados=cantidadEmpleados)
+    totalDolares = float(sumaSalarioEmpleados) / float(business_logic_cambio.cambio_venta(fecha=date))
+    return render_template('mypage.html', userLog=userLog, sumaSalarioEmpleados=sumaSalarioEmpleados, cantidadEmpleados=cantidadEmpleados, totalDolares = totalDolares)
 
 @app.route('/myprofile', methods=['POST','GET'])
 def myprofile():
@@ -118,8 +129,29 @@ def myprofile():
             return render_template('cambiosagreados.html', userLog = userLog)
     else:
         return render_template('myprofile.html', userLog=userLog)
-    
 
+@app.route('/contrasena', methods=['POST','GET'])
+def contrasena():
+    user_id = session['id']
+    userLog = business_logic_user.get_user(user_id)
+    if request.method == 'POST':
+        try:
+            if business_logic_user.verificar_contrasena(request.form.get('contrasenaActual'),userLog.id):
+                if business_logic_user.confirmar_contrasena(request.form.get('contrasena1'),request.form.get('contrasena2') ):
+                    if(business_logic_user.verificar_caracteres(request.form.get('contrasena1'))):
+                        business_logic_user.update_contrasena(request.form.get('contrasena1'), userLog.id)
+                        return render_template('contrasenaactualizada.html', userLog=userLog)
+                    else:
+                        return render_template('contrasenanocumple.html', userLog=userLog)
+                else:
+                    return render_template('contrasenanoigual2.html', userLog = userLog)
+            else:
+                return render_template('contrasenanoigual.html', userLog = userLog)
+        except:
+            return render_template('errorcontrasena.html', userLog=userLog)
+
+    else:
+        return render_template('cambiarcontrasena.html', userLog=userLog)
 
 @app.route('/agregarempleados', methods=['GET', 'POST'])
 def agregarEmpleados():
@@ -161,7 +193,6 @@ def empleados():
     userLog = business_logic_user.get_user(session['id'])
     empleados = business_logic_empleado.get_empleados_por_user_id(session['id'])
     return render_template('empleados.html', userLog = userLog, empleados = empleados)
-
 
 @app.route('/editarempleado/<int:id>', methods=['GET', 'POST'])
 def editar_empleado(id):
@@ -209,21 +240,28 @@ def eliminar_usuario(user_id):
 
 @app.route('/info/<int:id>', methods=['GET', 'POST'])
 def info_empleado(id):
-    empleado = business_logic_empleado.get_empleados_por_id(id)
-    impuesto_renta = business_logic_empleado.impuesto_renta(empleado.salarioBruto)
-    ivm = business_logic_empleado.ivm(empleado.salarioBruto)
-    sem = business_logic_empleado.sem(empleado.salarioBruto)
-    lpt = business_logic_empleado.lpt(empleado.salarioBruto)
-    total_impuestos = business_logic_empleado.total_impuestos(empleado.salarioBruto)
-    aporte_patronal = business_logic_empleado.aporte_patronal(empleado.salarioBruto)
-    salario_neto = business_logic_empleado.salario_neto(empleado.salarioBruto)
     userLog = business_logic_user.get_user(session['id'])
+    if request.method == 'POST':
+        try:
+            return render_template('correoenviado.html',userLog=userLog)
+        except:
+            return render_template('correofallido.html',userLog=userLog)
+    else:
+        empleado = business_logic_empleado.get_empleados_por_id(id)
+        impuesto_renta = business_logic_empleado.impuesto_renta(empleado.salarioBruto)
+        ivm = business_logic_empleado.ivm(empleado.salarioBruto)
+        sem = business_logic_empleado.sem(empleado.salarioBruto)
+        lpt = business_logic_empleado.lpt(empleado.salarioBruto)
+        total_impuestos = business_logic_empleado.total_impuestos(empleado.salarioBruto)
+        aporte_patronal = business_logic_empleado.aporte_patronal(empleado.salarioBruto)
+        salario_neto = business_logic_empleado.salario_neto(empleado.salarioBruto)
+        userLog = business_logic_user.get_user(session['id'])
 
-    return render_template('info_empleados.html',  userLog = userLog, 
-                           empleado = empleado, impuesto_renta = impuesto_renta, 
-                           ivm = ivm, sem = sem, lpt = lpt,
-                            aporte_patronal = aporte_patronal, total_impuestos = total_impuestos,
-                            salario_neto=salario_neto )
+        return render_template('info_empleados.html',  userLog = userLog, 
+                            empleado = empleado, impuesto_renta = impuesto_renta, 
+                            ivm = ivm, sem = sem, lpt = lpt,
+                                aporte_patronal = aporte_patronal, total_impuestos = total_impuestos,
+                                salario_neto=salario_neto )
 
 
 #Creacion de pdfs
@@ -238,12 +276,6 @@ def descargar_nomina_general():
         userLog = business_logic_user.get_user(session['id'])
         buffer = business_logic_empleado.generar_pdf_planilla_general(id=session['id'], empresa=userLog.compania)
         return send_file(buffer, as_attachment=True, download_name=f'nomina_test.pdf', mimetype='application/pdf')
-
-# @app.route('/delete/<int:empleado_id>', methods=['POST'])
-# def deleted_user(empleado_id):
-#     empleado_id = request.form['user_id']
-#     # result = business_logic.deleteUser(userId)
-#     return render_template('deleted.html')
 
 
 

@@ -69,8 +69,8 @@
                         <div>
                            </div> 
                         <div class="text-center">
-                            <form action="{{ url_for('editar_empleado', userlog = userlog, id=empleado.id) }}"><button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Enviar comprobante de pago por correo</button></form>
-                            <form action="/descargar_informacion/{{empleado.id}}" ><button class="d-none d-sm-inline-block btn btn-sm btn-orange shadow-sm">Descargar pdf con la informacion</button></form>
+                            <form action="/info/{{empleado.id}}" method="post"><button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Enviar comprobante de pago por correo</button></form>
+                            <form action="/descargar_informacion/{{empleado.id}}" ><button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-orange shadow-sm">Descargar pdf con la informacion</button></form>
                             <a class="small" href="/empleados">Ver Empleados</a>
                         </div>
                         <div class="text-center">

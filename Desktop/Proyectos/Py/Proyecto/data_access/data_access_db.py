@@ -7,6 +7,7 @@ def obtener_conexion():
                                 user='root',
                                 password='',
                                 db='db_planilla_plus')
+
 #Conexio tabla user o empleador
 class userCRUD:
     def insertar_user(self, user:User):
@@ -55,6 +56,14 @@ class userCRUD:
         with conexion.cursor() as cursor:
             cursor.execute("UPDATE user SET nombre = %s, apellido = %s, correo = %s, telefono = %s, compania = %s WHERE id = %s",
                         (user.nombre, user.apellido, user.email, user.telefono, user.compania, user.id))
+        conexion.commit()
+        conexion.close()
+
+    def actualizar_contrasena(self, contrasena:str, id:int):
+        conexion = obtener_conexion()
+        with conexion.cursor() as cursor:
+            cursor.execute("UPDATE user SET contrasena = %s WHERE id = %s",
+                        (contrasena, id))
         conexion.commit()
         conexion.close()
 

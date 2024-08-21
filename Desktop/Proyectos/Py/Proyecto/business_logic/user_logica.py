@@ -1,6 +1,7 @@
-from data_access.data_access import userCRUD
-from data_access.data_access import EmpleadoCRUD
+from data_access.data_access_db import userCRUD
+from data_access.data_access_db import EmpleadoCRUD
 from entities.entities import User
+import re
 
 class User_logica:
     def __init__(self):
@@ -28,3 +29,38 @@ class User_logica:
 
     def login(self, email, contrasena) -> User:
         return self.data_access.login(email=email, contrasena=contrasena)
+    
+    def verificar_contrasena(self, contrasena, id) -> bool:
+        user = self.get_user(id)
+        if user.contrasena == contrasena:
+            return True
+        else:
+            return False
+        
+    def update_contrasena(self, contrasena = None, id = None):
+        user = self.get_user(id)
+        self.data_access.actualizar_contrasena(contrasena=contrasena,id=id)
+    
+    def confirmar_contrasena(self, contrasena1 = None, contrasena2 = None)->bool:
+        if contrasena1 == contrasena2:
+            return True
+        else:
+            return False
+        
+    def verificar_caracteres(self, contrasena = None) -> bool:
+        if contrasena is None:
+            return False
+        
+        if len(contrasena) < 8:
+            return False
+
+        if not re.search(r'\d', contrasena):
+            return False
+
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', contrasena):
+            return False
+        
+        if not re.search(r'[A-Z]', contrasena):
+            return False
+
+        return True

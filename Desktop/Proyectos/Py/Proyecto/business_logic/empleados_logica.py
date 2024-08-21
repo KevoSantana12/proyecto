@@ -1,4 +1,4 @@
-from data_access.data_access import EmpleadoCRUD
+from data_access.data_access_db import EmpleadoCRUD
 from entities.entities import Empleado
 from decimal import Decimal
 from io import BytesIO
